@@ -176,6 +176,7 @@
             gap: 1.3rem
         }
 
+        /* تم زيادة ارتفاع صور العناصر لتصبح أوضح */
         .menu-card {
             background: var(--main-gray);
             border-radius: 22px;
@@ -197,11 +198,13 @@
 
         .menu-img {
             width: 100%;
-            height: 160px;
+            height: 240px; /* تم تكبير الارتفاع للصور العامة */
             object-fit: cover;
+            object-position: center;
             border-radius: 12px;
             margin-bottom: .8rem;
-            display: block
+            display: block;
+            image-rendering: auto;
         }
 
         .item-title {
@@ -307,7 +310,7 @@
             position: absolute;
             top: 12px;
             left: 12px;
-            background: var(--main-yellow);
+            background: var(--main-yellow); /* أصفر كما طلبت */
             color: #000;
             font-weight: 700;
             font-size: .65rem;
@@ -327,7 +330,7 @@
 
         /* تحسين صورة الشوكوليزا: تكبيرها، توضيحها، ظل لطيف، وتثبيت قص الصورة */
         .chocoliza-img {
-            height: 320px; /* أكبر من بقية الصور لإبراز الحلوى */
+            height: 420px; /* أكبر من بقية الصور لإبراز الحلوى */
             object-fit: cover;
             object-position: center;
             border-radius: 14px;
@@ -343,7 +346,11 @@
             }
 
             .chocoliza-img {
-                height: 260px
+                height: 320px
+            }
+
+            .menu-img {
+                height: 200px;
             }
         }
 
@@ -354,7 +361,7 @@
             }
 
             .chocoliza-img {
-                height: 200px
+                height: 260px
             }
 
             .section-title {
@@ -370,7 +377,7 @@
             }
 
             .menu-img {
-                height: 120px
+                height: 160px
             }
         }
     </style>
@@ -381,7 +388,7 @@
             <button id="langBtn" class="lang-btn" type="button" aria-pressed="false">English</button>
         </div>
         <!-- الشعار الآن يُعرض أكبر: العرض الفعلي المطلوب 660px (مع استجابة عبر max-width) -->
-        <img class="logo-img" src="images/logo.webp" alt="شعار مستر بيتزا" loading="lazy" onerror="this.style.display='none'" />
+        <img class="logo-img" src="images/logo.webp" alt="شعار مستر بيتزا" loading="lazy" onerror="handleImageError(this, ['images/logo@2x.webp','images/placeholder-logo.png']);" />
     </header>
 
     <main>
@@ -442,6 +449,31 @@
                     <div class="item-desc">ذرة - زيتون - دجاج - فصوليا - مخلل خيار - ميونيز</div>
                     <div class="item-price">33,000 ل.س</div>
                 </div>
+
+                <!-- عنصر جديد: بيتزا الفطر في قسم جديدنا -->
+                <div class="menu-card pizza-card" data-prices='{"small":40000,"medium":58000,"large":84000}'>
+                    <span class="new-badge">جديد</span>
+                    <picture>
+                        <source srcset="images/mushroom_pizza.webp 1x, images/mushroom_pizza@2x.webp 2x" type="image/webp">
+                        <img class="menu-img"
+                             src="images/mushroom_pizza.webp"
+                             srcset="images/mushroom_pizza.webp 1x, images/mushroom_pizza@2x.webp 2x"
+                             alt="بيتزا الفطر"
+                             width="800" height="480"
+                             loading="lazy"
+                             decoding="async"
+                             onerror="handleImageError(this, ['images/mushroom_pizza@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
+                    <div class="item-title">بيتزا الفطر</div>
+                    <div class="item-desc">فطر فريش - صوص البيتزا الابيض - جبنة موزريلا</div>
+                    <div class="item-sizes">
+                        <button class="size-btn" data-size="small" type="button">صغير</button>
+                        <button class="size-btn" data-size="medium" type="button">وسط</button>
+                        <button class="size-btn" data-size="large" type="button">كبير</button>
+                    </div>
+                    <div class="item-price"></div>
+                </div>
+
             </div>
         </section>
 
@@ -449,7 +481,10 @@
             <div class="section-title">البيتزا</div>
             <div class="items-grid">
                 <div class="menu-card pizza-card" data-prices='{"small":50000,"medium":85000,"large":120000}'>
-                    <img class="menu-img" src="images/pepperoni.webp" alt="بيتزا ببروني" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/pepperoni.webp 1x, images/pepperoni@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/pepperoni.webp" srcset="images/pepperoni.webp 1x, images/pepperoni@2x.webp 2x" alt="بيتزا ببروني" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/pepperoni@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا ببروني</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - ببروني</div>
                     <div class="item-sizes">
@@ -461,7 +496,10 @@
                 </div>
 
                 <div class="menu-card pizza-card" data-prices='{"small":52000,"medium":95000,"large":125000}'>
-                    <img class="menu-img" src="images/disney.webp" alt="بيتزا ديزني" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/disney.webp 1x, images/disney@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/disney.webp" srcset="images/disney.webp 1x, images/disney@2x.webp 2x" alt="بيتزا ديزني" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/disney@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا ديزني</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - حبش مدخن - سلامي</div>
                     <div class="item-sizes">
@@ -473,7 +511,10 @@
                 </div>
 
                 <div class="menu-card pizza-card" data-prices='{"small":35000,"medium":55000,"large":80000}'>
-                    <img class="menu-img" src="images/four_seasons.webp" alt="بيتزا الفصول الاربعة" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/four_seasons.webp 1x, images/four_seasons@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/four_seasons.webp" srcset="images/four_seasons.webp 1x, images/four_seasons@2x.webp 2x" alt="بيتزا الفصول الاربعة" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/four_seasons@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا الفصول الاربعة</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - فطر - فليفلة مشكلة - ذرة</div>
                     <div class="item-sizes">
@@ -485,7 +526,10 @@
                 </div>
 
                 <div class="menu-card pizza-card" data-prices='{"small":30000,"medium":53000,"large":77000}'>
-                    <img class="menu-img" src="images/margherita.webp" alt="بيتزا مارغريتا" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/margherita.webp 1x, images/margherita@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/margherita.webp" srcset="images/margherita.webp 1x, images/margherita@2x.webp 2x" alt="بيتزا مارغريتا" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/margherita@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا مارغريتا</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - حبق - بندورة كرزية</div>
                     <div class="item-sizes">
@@ -497,7 +541,10 @@
                 </div>
 
                 <div class="menu-card pizza-card" data-prices='{"small":60000,"medium":80000,"large":125000}'>
-                    <img class="menu-img" src="images/mr_pizza.webp" alt="بيتزا مستر بيتزا" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/mr_pizza.webp 1x, images/mr_pizza@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/mr_pizza.webp" srcset="images/mr_pizza.webp 1x, images/mr_pizza@2x.webp 2x" alt="بيتزا مستر بيتزا" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/mr_pizza@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا مستر بيتزا</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - بيكن بقري - هوت دوغ - فطر - صوص سبيشل مستر بيتزا</div>
                     <div class="item-sizes">
@@ -509,7 +556,10 @@
                 </div>
 
                 <div class="menu-card pizza-card" data-prices='{"small":46000,"medium":68000,"large":110000}'>
-                    <img class="menu-img" src="images/bbq.webp" alt="بيتزا باربكيو" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/bbq.webp 1x, images/bbq@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/bbq.webp" srcset="images/bbq.webp 1x, images/bbq@2x.webp 2x" alt="بيتزا باربكيو" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/bbq@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا باربكيو</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - دجاج - ذرة - صوص باربكيو</div>
                     <div class="item-sizes">
@@ -521,7 +571,10 @@
                 </div>
 
                 <div class="menu-card pizza-card" data-prices='{"small":46000,"medium":68000,"large":110000}'>
-                    <img class="menu-img" src="images/ranch.webp" alt="بيتزا رانش" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/ranch.webp 1x, images/ranch@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/ranch.webp" srcset="images/ranch.webp 1x, images/ranch@2x.webp 2x" alt="بيتزا رانش" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/ranch@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا رانش</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - دجاج - فليفلة - ذرة - صوص الرانش</div>
                     <div class="item-sizes">
@@ -533,7 +586,10 @@
                 </div>
 
                 <div class="menu-card pizza-card" data-prices='{"small":40000,"medium":60000,"large":85000}'>
-                    <img class="menu-img" src="images/four_cheese.webp" alt="بيتزا فور تشيز" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/four_cheese.webp 1x, images/four_cheese@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/four_cheese.webp" srcset="images/four_cheese.webp 1x, images/four_cheese@2x.webp 2x" alt="بيتزا فور تشيز" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/four_cheese@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
                     <div class="item-title">بيتزا فور تشيز</div>
                     <div class="item-desc">صوص البيتزا - جبنة موزريلا - جبنة كريمية - جبنة فيتا - جبنة بارميزان</div>
                     <div class="item-sizes">
@@ -543,6 +599,23 @@
                     </div>
                     <div class="item-price"></div>
                 </div>
+
+                <!-- بيتزا الفطر في قائمة البيتزا -->
+                <div class="menu-card pizza-card" data-prices='{"small":40000,"medium":58000,"large":84000}'>
+                    <picture>
+                        <source srcset="images/mushroom_pizza.webp 1x, images/mushroom_pizza@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/mushroom_pizza.webp" srcset="images/mushroom_pizza.webp 1x, images/mushroom_pizza@2x.webp 2x" alt="بيتزا الفطر" width="800" height="480" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/mushroom_pizza@2x.webp','images/placeholder-pizza.jpg']);" />
+                    </picture>
+                    <div class="item-title">بيتزا الفطر</div>
+                    <div class="item-desc">فطر فريش - صوص البيتزا الابيض - جبنة موزريلا</div>
+                    <div class="item-sizes">
+                        <button class="size-btn" data-size="small" type="button">صغير</button>
+                        <button class="size-btn" data-size="medium" type="button">وسط</button>
+                        <button class="size-btn" data-size="large" type="button">كبير</button>
+                    </div>
+                    <div class="item-price"></div>
+                </div>
+
             </div>
         </section>
 
@@ -550,31 +623,46 @@
             <div class="section-title">المقبلات والباستا</div>
             <div class="items-grid">
                 <div class="menu-card">
-                    <img class="menu-img" src="images/kumpir.webp" alt="بطاطا كومبير" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/kumpir.webp 1x, images/kumpir@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/kumpir.webp" srcset="images/kumpir.webp 1x, images/kumpir@2x.webp 2x" alt="بطاطا كومبير" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/kumpir@2x.webp','images/placeholder-side.jpg']);" />
+                    </picture>
                     <div class="item-title">بطاطا كومبير</div>
                     <div class="item-desc">ذرة - زيتون - دجاج - فصوليا - مخلل خيار - ميونيز</div>
                     <div class="item-price">33,000 ل.س</div>
                 </div>
                 <div class="menu-card">
-                    <img class="menu-img" src="images/caesar.webp" alt="سلطة سيزر" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/caesar.webp 1x, images/caesar@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/caesar.webp" srcset="images/caesar.webp 1x, images/caesar@2x.webp 2x" alt="سلطة سيزر" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/caesar@2x.webp','images/placeholder-side.jpg']);" />
+                    </picture>
                     <div class="item-title">سلطة سيزر</div>
                     <div class="item-desc">خس - دجاج - توست محمص - صوص السيزر الخاص - جبنة بارميزان</div>
                     <div class="item-price">33,000 ل.س</div>
                 </div>
                 <div class="menu-card">
-                    <img class="menu-img" src="images/veg_pasta.webp" alt="باستا خضار" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/veg_pasta.webp 1x, images/veg_pasta@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/veg_pasta.webp" srcset="images/veg_pasta.webp 1x, images/veg_pasta@2x.webp 2x" alt="باستا خضار" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/veg_pasta@2x.webp','images/placeholder-side.jpg']);" />
+                    </picture>
                     <div class="item-title">باستا خضار</div>
                     <div class="item-desc">معكرونة - فليفلة - زيتون - ذرة - جزر</div>
                     <div class="item-price">32,000 ل.س</div>
                 </div>
                 <div class="menu-card">
-                    <img class="menu-img" src="images/chicken_ranch_pasta.webp" alt="باستا رانش دجاج" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/chicken_ranch_pasta.webp 1x, images/chicken_ranch_pasta@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/chicken_ranch_pasta.webp" srcset="images/chicken_ranch_pasta.webp 1x, images/chicken_ranch_pasta@2x.webp 2x" alt="باستا رانش دجاج" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/chicken_ranch_pasta@2x.webp','images/placeholder-side.jpg']);" />
+                    </picture>
                     <div class="item-title">باستا رانش دجاج</div>
                     <div class="item-desc">معكرونة - دجاج - فليفلة - صوص الرانش</div>
                     <div class="item-price">36,000 ل.س</div>
                 </div>
                 <div class="menu-card">
-                    <img class="menu-img" src="images/hotdog_pasta.webp" alt="باستا هوت دوغ" loading="lazy" onerror="this.style.display='none'" />
+                    <picture>
+                        <source srcset="images/hotdog_pasta.webp 1x, images/hotdog_pasta@2x.webp 2x" type="image/webp">
+                        <img class="menu-img" src="images/hotdog_pasta.webp" srcset="images/hotdog_pasta.webp 1x, images/hotdog_pasta@2x.webp 2x" alt="باستا هوت دوغ" loading="lazy" decoding="async" onerror="handleImageError(this, ['images/hotdog_pasta@2x.webp','images/placeholder-side.jpg']);" />
+                    </picture>
                     <div class="item-title">باستا هوت دوغ</div>
                     <div class="item-desc">معكرونة - هوت دوغ - ذرة - زيتون - صوص الكوكتيل</div>
                     <div class="item-price">40,000 ل.س</div>
@@ -693,7 +781,7 @@
             }
         }
 
-        const translations = { /* نفس خريطة الترجمات كما في الملف السابق */ en: { introMain: 'Flavors Blending Authenticity & Innovation', introSub: 'Let Mr. Pizza be your first choice 🍕🔥', nav: { pizza: 'Pizza', sides: 'Sides & Pasta', dessert: 'Dessert Items', new: 'New' }, sectionTitles: { pizza: 'Pizza', sides: 'Sides & Pasta', dessert: 'Dessert Items', new: "What's New", contact: 'Contact Us' }, items: { 'بيتزا ببروني': 'Pepperoni Pizza', 'صوص البيتزا - جبنة موزريلا - ببروني': 'Pizza sauce - Mozzarella - Pepperoni', 'بيتزا ديزني': 'Disney Pizza', 'صوص البيتزا - جبنة موزريلا - حبش مدخن - سلامي': 'Pizza sauce - Mozzarella - Smoked turkey - Salami', 'بيتزا الفصول الاربعة': 'Four Seasons Pizza', 'صوص البيتزا - جبنة موزريلا - فطر - فليفلة مشكلة - ذرة': 'Pizza sauce - Mozzarella - Mushrooms - Mixed peppers - Corn', 'بيتزا مارغريتا': 'Margherita Pizza', 'صوص البيتزا - جبنة موزريلا - حبق - بندورة كرزية': 'Pizza sauce - Mozzarella - Basil - Cherry tomatoes', 'بيتزا مستر بيتزا': 'Mr. Pizza', 'صوص البيتزا - جبنة موزريلا - بيكن بقري - هوت دوغ - فطر - صوص سبيشل مستر بيتزا': 'Pizza sauce - Mozzarella - Beef bacon - Hot dog - Mushrooms - Mr. Pizza special sauce', 'بيتزا باربكيو': 'BBQ Pizza', 'صوص البيتزا - جبنة موزريلا - دجاج - ذرة - صوص باربكيو': 'Pizza sauce - Mozzarella - Chicken - Corn - BBQ sauce', 'بيتزا رانش': 'Ranch Pizza', 'صوص البيتزا - جبنة موزريلا - دجاج - فليفلة - ذرة - صوص الرانش': 'Pizza sauce - Mozzarella - Chicken - Peppers - Corn - Ranch sauce', 'بيتزا فور تشيز': 'Four Cheese Pizza', 'صوص البيتزا - جبنة موزريلا - جبنة كريمية - جبنة فيتا - جبنة بارميزان': 'Pizza sauce - Mozzarella - Cream cheese - Feta - Parmesan', 'بطاطا كومبير': 'Kumpir Potato', 'ذرة - زيتون - دجاج - فصوليا - مخلل خيار - ميونيز': 'Corn - Olives - Chicken - Green beans - Pickled cucumber - Mayonnaise', 'سلطة سيزر': 'Caesar Salad', 'خس - دجاج - توست محمص - صوص السيزر الخاص - جبنة بارميزان': 'Lettuce - Chicken - Croutons - Special Caesar dressing - Parmesan', 'باستا خضار': 'Vegetable Pasta', 'معكرونة - فليفلة - زيتون - ذرة - جزر': 'Pasta - Peppers - Olives - Corn - Carrot', 'باستا رانش دجاج': 'Chicken Ranch Pasta', 'معكرونة - دجاج - فليفلة - صوص الرانش': 'Pasta - Chicken - Peppers - Ranch sauce', 'باستا هوت دوغ': 'Hot Dog Pasta', 'معكرونة - هوت دوغ - ذرة - زيتون - صوص الكوكتيل': 'Pasta - Hot dog - Corn - Olives - Cocktail sauce', 'شوكوليزا': 'Chocoliza', 'حلا مميز بمستر بيتزا': "Mr. Pizza's special dessert", 'اتصل بنا': 'Contact Us', 'العنوان: التل - الشارع الرئيسي - نزلة بريغش - جانب صالون داماس': 'Address: Al-Tall - Main Street - Nazlet Breigesh - beside Damas Salon', 'جميع الحقوق محفوظة لدى مستر بيتزا': 'All rights reserved to Mr. Pizza' }, labelNew: 'new', priceSuffix: ' SYP' } };
+        const translations = { /* نفس خريطة الترجمات كما في الملف السابق */ en: { introMain: 'Flavors Blending Authenticity & Innovation', introSub: 'Let Mr. Pizza be your first choice 🍕🔥', nav: { pizza: 'Pizza', sides: 'Sides & Pasta', dessert: 'Dessert Items', new: 'New' }, sectionTitles: { pizza: 'Pizza', sides: 'Sides & Pasta', dessert: 'Dessert Items', new: "What's New", contact: 'Contact Us' }, items: { 'بيتزا ببروني': 'Pepperoni Pizza', 'صوص البيتزا - جبنة موزريلا - ببروني': 'Pizza sauce - Mozzarella - Pepperoni', 'بيتزا ديزني': 'Disney Pizza', 'صوص البيتزا - جبنة موزريلا - حبش مدخن - سلامي': 'Pizza sauce - Mozzarella - Smoked turkey - Salami', 'بيتزا الفصول الاربعة': 'Four Seasons Pizza', 'صوص البيتزا - جبنة موزريلا - فطر - فليفلة مشكلة - ذرة': 'Pizza sauce - Mozzarella - Mushrooms - Mixed peppers - Corn', 'بيتزا مارغريتا': 'Margherita Pizza', 'صوص البيتزا - جبنة موزريلا - حبق - بندورة كرزية': 'Pizza sauce - Mozzarella - Basil - Cherry tomatoes', 'بيتزا مستر بيتزا': 'Mr. Pizza', 'صوص البيتزا - جبنة موزريلا - بيكن بقري - هوت دوغ - فطر - صوص سبيشل مستر بيتزا': 'Pizza sauce - Mozzarella - Beef bacon - Hot dog - Mushrooms - Mr. Pizza special sauce', 'بيتزا باربكيو': 'BBQ Pizza', 'صوص البيتزا - جبنة موزريلا - دجاج - ذرة - صوص باربكيو': 'Pizza sauce - Mozzarella - Chicken - Corn - BBQ sauce', 'بيتزا رانش': 'Ranch Pizza', 'صوص البيتزا - جبنة موزريلا - دجاج - فليفلة - ذرة - صوص الرانش': 'Pizza sauce - Mozzarella - Chicken - Peppers - Corn - Ranch sauce', 'بيتزا فور تشيز': 'Four Cheese Pizza', 'صوص البيتزا - جبنة موزريلا - جبنة كريمية - جبنة فيتا - جبنة بارميزان': 'Pizza sauce - Mozzarella - Cream cheese - Feta - Parmesan', 'بطاطا كومبير': 'Kumpir Potato', 'ذرة - زيتون - دجاج - فصوليا - مخلل خيار - ميونيز': 'Corn - Olives - Chicken - Green beans - Pickled cucumber - Mayonnaise', 'سلطة سيزر': 'Caesar Salad', 'خس - دجاج - توست محمص - صوص السيزر الخاص - جبنة بارميزان': 'Lettuce - Chicken - Croutons - Special Caesar dressing - Parmesan', 'باستا خضار': 'Vegetable Pasta', 'معكرونة - فليفلة - زيتون - ذرة - جزر': 'Pasta - Peppers - Olives - Corn - Carrot', 'باستا رانش دجاج': 'Chicken Ranch Pasta', 'معكرونة - دجاج - فليفلة - صوص الرانش': 'Pasta - Chicken - Peppers - Ranch sauce', 'باستا هوت دوغ': 'Hot Dog Pasta', 'معكرونة - هوت دوغ - ذرة - زيتون - صوص الكوكتيل': 'Pasta - Hot dog - Corn - Olives - Cocktail sauce', 'شوكوليزا': 'Chocoliza', 'حلا مميز بمستر بيتزا': "Mr. Pizza's special dessert", 'اتصل بنا': 'Contact Us', 'العنوان: التل - الشارع الرئيسي - نزلة بريغش - جانب صالون داماس': 'Address: Al-Tall - Main Street - Nazlet Breigesh - beside Damas Salon', 'جميع الحقوق محفوظة لدى مستر بيتزا': 'All rights reserved to Mr. Pizza', 'بيتزا الفطر': 'Mushroom Pizza', 'فطر فريش - صوص البيتزا الابيض - جبنة موزريلا': 'Fresh mushrooms - White pizza sauce - Mozzarella' }, labelNew: 'new', priceSuffix: ' SYP' } };
 
         function storeOriginalArabic() {
             document.querySelectorAll('.item-title, .item-desc, .section-title, .intro-main, .intro-sub, .contact-title, #addressText, #footerText').forEach(el => { if (!el.dataset.ar) el.dataset.ar = el.textContent.trim(); });
@@ -733,7 +821,7 @@
 
         function markNewItemsGlobally() {
             const newNamesAr = new Set(); document.querySelectorAll('#new-section .menu-card .item-title').forEach(t => { const ar = t.dataset.ar || t.textContent.trim(); if (ar) newNamesAr.add(ar); });
-            document.querySelectorAll('.menu-card').forEach(card => { const titleEl = card.querySelector('.item-title'); if (!titleEl) return; const arTitle = titleEl.dataset.ar || titleEl.textContent.trim(); if (newNamesAr.has(arTitle)) { card.classList.add('is-new'); if (!card.querySelector('.new-badge')) { const span = document.createElement('span'); span.className = 'new-badge'; card.prepend(span); } } else { card.classList.remove('is-new'); const existing = card.querySelector('.new-badge'); if (existing) existing.remove(); } });
+            document.querySelectorAll('.menu-card').forEach(card => { const titleEl = card.querySelector('.item-title'); if (!titleEl) return; const arTitle = titleEl.dataset.ar || titleEl.textContent.trim(); if (newNamesAr.has(arTitle)) { card.classList.add('is-new'); if (!card.querySelector('.new-badge')) { const span = document.createElement('span'); span.className = 'new-badge'; span.textContent = 'جديد'; card.prepend(span); } } else { card.classList.remove('is-new'); const existing = card.querySelector('.new-badge'); if (existing && !document.querySelector('#new-section').contains(existing)) existing.remove(); } });
         }
 
         function updateAllTexts() {
